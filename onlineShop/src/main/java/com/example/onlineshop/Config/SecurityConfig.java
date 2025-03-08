@@ -39,7 +39,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/login", "/register", "/css/**", "/images/**", "/uploads/**","/","/categories/**","products/**","brands/add","search/**","/new/user/registration","/products/add","brands/**").permitAll()  // Public access for login, register, and static resources
+                        .requestMatchers("/login", "/register", "/css/**", "/images/**", "/uploads/**","/","/home","/categories/**","products/**","brands/add","search/**","/new/user/registration","/products/add","/brands/**","/h2/**").permitAll()  // Public access for login, register, and static resources
                         .requestMatchers("/admin/**").hasRole("ADMIN")  // Admin-only access for /admin pages
                         .anyRequest().authenticated()  // All other pages require authentication
                 )

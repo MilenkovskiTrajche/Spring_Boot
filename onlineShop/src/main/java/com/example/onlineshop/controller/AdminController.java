@@ -215,6 +215,9 @@ public class AdminController {
         // Encrypt the password only if it's provided
         if (user.getPassword() != null && !user.getPassword().isEmpty()) {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
+        }else {
+            Users user1 = usersService.findById(id);
+            user.setPassword(user1.getPassword());
         }
         usersService.updateUser(id, user);
         return "redirect:/admin/users/viewUsers";
