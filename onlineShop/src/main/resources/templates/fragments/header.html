@@ -46,15 +46,16 @@
                             <form th:action="@{/logout}" method="post" class="logout-form">
                                 <button type="submit">Logout</button>
                             </form>
-                        </div>
 
-                        <!-- Show the Admin Panel link if the user is an admin -->
-                        <th:block th:if="${isAdmin}">
-                            <div class="admin-panel">
-                                <a th:href="@{/admin}">Admin Panel</a>
-                            </div>
-                        </th:block>
+                            <!-- Show the Admin Panel link if the user is an admin -->
+                            <th:block th:if="${isAdmin}">
+                                <div class="admin-panel">
+                                    <a th:href="@{/admin}">Admin</a>
+                                </div>
+                            </th:block>
+                        </div>
                     </th:block>
+
 
 
                     <!-- Show this block only if no user is logged in -->

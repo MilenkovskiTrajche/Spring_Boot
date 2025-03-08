@@ -338,21 +338,22 @@ nav {
     position: relative;
 }
 
-/* Hide the logout form by default */
+/* The logout form (button) initially hidden */
 .logout-form {
     display: none; /* Hide the logout button by default */
-    position: absolute;
-    top: 100%; /* Position the logout button just below the "Welcome" text */
-    left: 0;
-    background-color: #f1f1f1; /* Optional: add a background color */
-    padding: 10px;
-    border-radius: 5px;
-    z-index: 10; /* Ensure it appears above other content */
+    margin-left: 10px; /* Add space between the "Welcome" text and the logout button */
 }
 
-/* Show logout button when hovering over the login container */
-.login:hover .logout-form {
-    display: block;
+/* The admin panel link, initially hidden */
+.admin-panel {
+    display: none; /* Hide the admin panel link by default */
+    margin-left: 10px; /* Add space between the logout button and the admin link */
+}
+
+/* Show both the logout button and the admin link when hovering over the .login container */
+.login:hover .logout-form,
+.login:hover .admin-panel {
+    display: block; /* Show both elements on hover */
 }
 
 /* Styling for the logout button */
@@ -365,18 +366,12 @@ nav {
     cursor: pointer;
 }
 
-/* Admin panel link */
-.admin-panel {
-    margin-top: 10px; /* Add space between the logout button and the admin panel link */
-}
-
 /* Admin panel link styling */
 .admin-panel a {
     color: white;
     text-decoration: none;
     font-weight: bold;
-    margin-left: 10px;
-    padding: 5px;
+    padding: 8px 12px;
     background-color: darkblue;
     border-radius: 5px;
 }
@@ -385,6 +380,3 @@ nav {
 .admin-panel a:hover {
     background-color: #555;
 }
-
-
-
