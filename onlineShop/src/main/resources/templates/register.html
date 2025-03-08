@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="/css/stylelogin.css">
+</head>
+<body>
+<header>
+    <nav>
+        <ul class="menu">
+            <li><a href="/">Home</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section class="auth-container">
+    <div class="form-box">
+        <h2>Register</h2>
+        <form action="#" th:action="@{/new/user/registration}" method="post">
+            <label for="register-name">Name:</label>
+            <input type="text" id="register-name" name="name" required />
+
+            <label for="register-surname">Surname:</label>
+            <input type="text" id="register-surname" name="surname" required />
+
+            <label for="register-email">Email:</label>
+            <input type="email" id="register-email" name="email" required />
+
+            <label for="register-username">Username:</label>
+            <input type="text" id="register-username" name="username" required />
+
+            <label for="register-password">Password:</label>
+            <input type="password" id="register-password" name="password" required />
+
+            <button type="submit">Register</button>
+        </form>
+
+    </div>
+</section>
+</body>
+</html>

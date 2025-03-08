@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Shop</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div th:replace="~{fragments/header :: body}"></div>
+
+<section class="banner">
+    <img src="/images/home_screen.jpg" alt="Shop Banner">
+</section>
+
+<section class="products">
+    <h2>Our Products</h2>
+    <div class="product-list">
+        <div class="product" th:each="product : ${products}">
+            <a style="text-decoration: none; color:black"
+               th:href="@{'/products/' + ${product.category.parentCategory.name} + '/' + ${product.category.name} + '/' + ${product.id}
+                    + '/' + ${product.name}}">
+
+                <!-- Image section (70%) -->
+                <div class="image">
+                    <img th:src="@{${product.image}}" th:alt="${product.name}">
+                </div>
+
+                <!-- Name section (15%) -->
+                <div class="name">
+                    <p th:text="${product.name}">Product Name</p>
+                </div>
+
+                <!-- Price section (15%) -->
+                <div class="price">
+                    <p th:text="'$' + ${product.price}"> $99.99</p>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Products</title>
+    <link rel="stylesheet" href="/css/categories.css">
+</head>
+<body>
+
+<h2>Products</h2>
+<a style="display: block;text-align: justify;" href="/products/add">Add New Product</a>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Product Name</th>
+        <th>Product Description</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Category</th>
+        <th>Brand</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="product : ${products}">
+        <td th:text="${product.id}"></td>
+        <td th:text="${product.name}"></td>
+        <td th:text="${product.description}"></td>
+        <td th:text="${product.price}"></td>
+        <td th:text="${product.quantity}"></td>
+        <td th:text="${product.category.parentCategory.name} + '/' + ${product.category.name}"></td>
+        <td th:text="${product.brand.name}"></td>
+        <td>
+            <a th:href="@{/products/edit/{id}(id=${product.id})}">Edit</a> |
+            <a th:href="@{/products/delete/{id}(id=${product.id})}" onclick="return confirm('Are you sure?')">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<a style="display: block;text-align: center;"  href="/">Back to Home</a>
+
+</body>
+</html>

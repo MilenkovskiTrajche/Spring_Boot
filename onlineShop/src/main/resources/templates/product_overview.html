@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Product Overview</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      display: flex;
+      max-width: 800px;
+      margin: 100px auto;
+      border: 1px solid #ddd;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      background: #fff;
+    }
+    .image-container {
+      flex: 1;
+      padding-right: 20px;
+    }
+    .image-container img {
+      width: 100%;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+    .details {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .details h2 {
+      margin: 0;
+      color: #333;
+    }
+    .details p {
+      margin: 8px 0;
+      /*color: #444;*/
+    }
+    .meta-info {
+      font-size: 12px;
+      color: #777;
+    }
+    .price {
+      font-size: 22px;
+      font-weight: bold;
+      color: #e44d26;
+      text-align: right;
+      margin-top: auto;
+    }
+  </style>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<div th:replace="~{fragments/header :: body}"></div>
+
+<div class="container">
+  <!-- Left Side: Product Image -->
+  <div class="image-container">
+    <img th:src="@{${product.image}}" th:alt="${product.name}">
+  </div>
+
+  <!-- Right Side: Product Details -->
+  <div class="details">
+    <div>
+      <h2 th:text="${product.name}">Product Name</h2>
+      <p class="meta-info">
+        <span th:text="${product.category.parentCategory.name}">Category</span> /
+        <span th:text="${product.category.name}">Subcategory</span>
+      </p>
+      <p class="meta-info">Product ID: <span th:text="${product.id}">12345</span></p>
+
+      <p><strong>Brand:</strong> <span th:text="${product.brand.name}">Brand Name</span></p>
+      <p><strong>Description:</strong> <span th:text="${product.description}">Product Description</span></p>
+    </div>
+
+    <!-- Price at the bottom right -->
+    <p class="price">$<span th:text="${product.price}">0.00</span></p>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+>
+<head>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<header>
+    <nav>
+        <div class="nav-container">
+            <ul class="menu">
+                <li class="dropdown">
+                    <a href="/">HOME</a>
+                </li>
+                <li class="dropdown" th:each="menuItem : ${categories}">
+                    <a th:href="@{'/categories/' + ${menuItem.name}}" th:text="${menuItem.name}">Category</a>
+                    <ul class="dropdown-menu" th:if="${menuItem.subCategories != null and #lists.size(menuItem.subCategories) > 0}">
+                        <li th:each="subMenuItem : ${menuItem.subCategories}">
+                            <a th:href="@{'/categories/' + ${menuItem.name} + '/' + ${subMenuItem.name}}" th:text="${subMenuItem.name}">Subcategory</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="/brands/all">BRANDS</a>
+                    <ul class="dropdown-menu">
+                        <li th:each="brand : ${brands}">
+                            <a th:href="@{'/brands/' + ${brand.name}}" th:text="${brand.name}">Subcategory</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+            <div class="right-section">
+                <form method="GET" action="/search" class="search-form">
+                    <input type="text" name="product_name" placeholder="Search Product" class="search-input"/>
+                    <button type="submit" class="search-button">
+                        <img class="search-icon" src="/images/search.png" alt="Search">
+                    </button>
+                </form>
+
+                <div class="login-register">
+                    <!-- Show this block only if the user is logged in -->
+                    <th:block th:if="${userStatus != 'none'}">
+                        <div class="login">
+                            <span style="color:white" th:text="'Welcome ' + ${username}"></span>
+                            <form th:action="@{/logout}" method="post">
+                                <button type="submit">Logout</button>
+                            </form>
+                        </div>
+
+                        <!-- Show the Admin Panel link if the user is an admin -->
+                        <th:block th:if="${isAdmin}">
+                            <div class="login">
+                                <a th:href="@{/admin}">Admin Panel</a>
+                            </div>
+                        </th:block>
+                    </th:block>
+
+                    <!-- Show this block only if no user is logged in -->
+                    <th:block th:if="${userStatus == 'none'}">
+                        <div class="login">
+                            <a th:href="@{/login}">Login</a> | <a th:href="@{/new/user/registration}">Register</a>
+                        </div>
+                    </th:block>
+                </div>
+
+
+            </div>
+        </div>
+    </nav>
+</header>
+
+</body>
+</html>

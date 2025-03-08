@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Product</title>
+    <link rel="stylesheet" href="/css/add_forms.css">
+</head>
+<body>
+<h2 th:text="${product.id != null ? 'Edit Product' : 'Add Product'}"></h2>
+
+<!-- Edit Product Form -->
+<form th:if="${product.id != null}" th:action="@{'/products/edit/' + ${product.id}}" th:object="${product}" method="post" enctype="multipart/form-data">
+    <label for="name">Product Name:</label>
+    <input type="text" id="name" name="name" th:value="${product.name}" required>
+
+    <label for="description">Description:</label>
+    <textarea id="description" name="description" th:text="${product.description}" required></textarea>
+
+    <label for="price">Price:</label>
+    <input type="number" id="price" name="price" step="0.01" th:value="${product.price}" required>
+
+    <label for="quantity">Quantity:</label>
+    <input type="number" id="quantity" name="quantity" th:value="${product.quantity}" required>
+
+    <label for="category">Category:</label>
+    <select id="category" name="categoryId" required>
+        <option value="">Select a Category</option>
+        <th:block th:each="category : ${categories}">
+            <th:block th:each="subCategory : ${category.subCategories}">
+                <option th:value="${subCategory.id}"
+                        th:text="${category.name + ' - ' + subCategory.name}"
+                        th:selected="${product.category != null and product.category.id == subCategory.id}">
+                </option>
+            </th:block>
+        </th:block>
+    </select>
+
+    <label for="brand">Brand:</label>
+    <select id="brand" name="brandId" required>
+        <option value="">Select Brand:</option>
+        <th:block th:each="brand : ${brands}">
+            <option th:value="${brand.id}"
+                    th:text="${brand.name}"
+                    th:selected="${product.brand != null and product.brand.id == brand.id}">
+            </option>
+        </th:block>
+    </select>
+
+    <!-- Display Current Image -->
+    <label>Current Image:</label>
+    <div th:if="${product.image != null}">
+        <img th:src="@{${product.image}}" th:alt="${product.name}" style="max-width: 200px; height: auto;">
+    </div>
+
+    <!-- Checkbox to Keep Existing Image -->
+    <label for="keepImage">
+        <input type="checkbox" id="keepImage" name="keepImage" value="true" th:checked="${product.image != null}">
+        Use the same image
+    </label>
+
+    <label for="image">Product Image:</label>
+    <input type="file" id="image" name="imageFile" accept="image/*">
+
+    <button type="submit">Update Product</button>
+</form>
+
+<!-- Form for Adding New Product -->
+<!-- Add Product Form -->
+<form th:unless="${product.id != null}" th:action="@{/products/add}" method="post" enctype="multipart/form-data">
+    <label for="name">Product Name:</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="description">Description:</label>
+    <textarea id="description" name="description" required></textarea>
+
+    <label for="price">Price:</label>
+    <input type="number" id="price" name="price" step="0.01" required>
+
+    <label for="quantity">Quantity:</label>
+    <input type="number" id="quantity" name="quantity" required>
+
+    <label for="category">Category:</label>
+    <select id="category" name="categoryId" required>
+        <option value="">Select a Category</option>
+        <th:block th:each="category : ${categories}">
+            <th:block th:each="subCategory : ${category.subCategories}">
+                <option th:value="${subCategory.id}" th:text="${category.name + ' - ' + subCategory.name}"></option>
+            </th:block>
+        </th:block>
+    </select>
+
+    <label for="brand">Brand:</label>
+    <select id="brand" name="brandId" required>
+        <option value="">Select Brand:</option>
+        <th:block th:each="brand : ${brands}">
+            <option th:value="${brand.id}" th:text="${brand.name}"></option>
+        </th:block>
+    </select>
+
+    <label for="image">Product Image:</label>
+    <input type="file" id="image" name="imageFile" accept="image/*">
+
+    <button type="submit">Add Product</button>
+</form>
+
+<a href="/products/viewProducts">Back</a>
+</body>
+</html>

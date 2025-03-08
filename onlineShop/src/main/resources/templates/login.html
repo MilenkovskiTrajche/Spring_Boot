@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/css/stylelogin.css">
+</head>
+<body>
+
+<header>
+    <nav>
+        <ul class="menu">
+            <li><a href="/">Home</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section class="auth-container">
+    <div class="form-box">
+        <h2>Login</h2>
+        <form action="#" th:action="@{/login}" method="post">
+            <!-- CSRF Token for security -->
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required />
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required />
+
+            <button type="submit">Login</button>
+        </form>
+
+        <br><br><br>
+        <p>Don't have an account? Register for free!</p>
+        <a href="/new/user/registration">
+            <button type="button">Register</button>
+        </a>
+    </div>
+</section>
+
+<!-- Display error message if authentication fails -->
+<div th:if="${param.error}">
+    <p style="color:red">Invalid username or password</p>
+</div>
+
+</body>
+</html>
