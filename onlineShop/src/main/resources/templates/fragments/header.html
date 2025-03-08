@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
->
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <link rel="stylesheet" th:href="@{/css/style.css}">
+    <title></title>
 </head>
 <body>
 <header>
@@ -42,19 +42,20 @@
                     <!-- Show this block only if the user is logged in -->
                     <th:block th:if="${userStatus != 'none'}">
                         <div class="login">
-                            <span style="color:white" th:text="'Welcome ' + ${username}"></span>
-                            <form th:action="@{/logout}" method="post">
+                            <span class="welcome" style="color:white;" th:text="'Welcome ' + ${username}"></span>
+                            <form th:action="@{/logout}" method="post" class="logout-form">
                                 <button type="submit">Logout</button>
                             </form>
                         </div>
 
                         <!-- Show the Admin Panel link if the user is an admin -->
                         <th:block th:if="${isAdmin}">
-                            <div class="login">
+                            <div class="admin-panel">
                                 <a th:href="@{/admin}">Admin Panel</a>
                             </div>
                         </th:block>
                     </th:block>
+
 
                     <!-- Show this block only if no user is logged in -->
                     <th:block th:if="${userStatus == 'none'}">
@@ -63,8 +64,6 @@
                         </div>
                     </th:block>
                 </div>
-
-
             </div>
         </div>
     </nav>

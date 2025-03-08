@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Add/Edit Category</title>
@@ -10,7 +10,7 @@
 <h2 th:text="${category.id != null ? 'Edit Category' : 'Add Category'}"></h2>
 
 <!-- Edit Category Form -->
-<form th:action="@{'/categories/edit/' + ${category.id}}" th:if="${category.id != null}" method="post">
+<form th:action="@{'/admin/categories/edit/' + ${category.id}}" th:if="${category.id != null}" method="post">
     <input type="hidden" name="id" th:value="${category.id}">
 
     <label for="name">Category Name:</label>
@@ -31,7 +31,7 @@
 
 
 <!-- Form for adding a new category -->
-<form th:action="@{/categories/add}" th:unless="${category.id != null}" method="post">
+<form th:action="@{/admin/categories/add}" th:unless="${category.id != null}" method="post">
     <label for="name">Category Name:</label>
     <input type="text" id="name" name="name" required>
 
@@ -47,7 +47,7 @@
     <button type="submit">Add Category</button>
 </form>
 
-<a href="/categories/viewCategories">Back</a>
+<a th:href="@{/admin/categories/viewCategories}">Back</a>
 
 </body>
 </html>

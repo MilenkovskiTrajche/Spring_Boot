@@ -10,7 +10,7 @@
 <h2 th:text="${product.id != null ? 'Edit Product' : 'Add Product'}"></h2>
 
 <!-- Edit Product Form -->
-<form th:if="${product.id != null}" th:action="@{'/products/edit/' + ${product.id}}" th:object="${product}" method="post" enctype="multipart/form-data">
+<form th:if="${product.id != null}" th:action="@{'/admin/products/edit/' + ${product.id}}" th:object="${product}" method="post" enctype="multipart/form-data">
     <label for="name">Product Name:</label>
     <input type="text" id="name" name="name" th:value="${product.name}" required>
 
@@ -67,7 +67,7 @@
 
 <!-- Form for Adding New Product -->
 <!-- Add Product Form -->
-<form th:unless="${product.id != null}" th:action="@{/products/add}" method="post" enctype="multipart/form-data">
+<form th:unless="${product.id != null}" th:action="@{/admin/products/add}" method="post" enctype="multipart/form-data">
     <label for="name">Product Name:</label>
     <input type="text" id="name" name="name" required>
 
@@ -104,6 +104,6 @@
     <button type="submit">Add Product</button>
 </form>
 
-<a href="/products/viewProducts">Back</a>
+<a th:href="@{/admin/products/viewProducts}">Back</a>
 </body>
 </html>

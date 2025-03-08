@@ -24,50 +24,6 @@ public class CategoriesController {
         this.navBarService = navBarService;
     }
 
-    @GetMapping("/viewCategories")
-    public String categories(Model model) {
-        model.addAttribute("categories", categoriesService.findAll()); // Fetch existing categories for dropdown
-        return "categories";
-    }
-    @GetMapping("/add")
-    public String showCategoryForm(Model model) {
-        model.addAttribute("categories", categoriesService.findByParentCategoryIsNull()); // Fetch existing categories for dropdown
-        model.addAttribute("category", new Categories()); // Empty category for form binding
-        return "add_category";
-    }
-
-    @PostMapping("/add")
-    public String addCategory(@ModelAttribute Categories category,
-                              @RequestParam(required = false) Long parentId) {
-        categoriesService.saveCategory(category, parentId);
-        return "redirect:/categories/viewCategories";
-    }
-
-    // Show Add/Edit Category Form
-    @GetMapping("/edit/{id}")
-    public String showEditForm(@PathVariable Long id, Model model) {
-        model.addAttribute("category", categoriesService.findById(id));
-        model.addAttribute("categories", categoriesService.findAll()); // Fetch main categories for dropdown
-        return "add_category"; // Reuse same form for adding and editing
-    }
-
-    // Handle Edit Category Form Submission
-    @PostMapping("/edit/{id}")
-    public String editCategory(@PathVariable Long id,
-                               @ModelAttribute Categories category,
-                               @RequestParam(required = false) Long parentId) {
-        categoriesService.updateCategory(id, category, parentId);
-        return "redirect:/categories/viewCategories";
-    }
-
-    // Delete Category
-    @GetMapping("/delete/{id}")
-    public String deleteCategory(@PathVariable Long id) {
-        categoriesService.deleteCategory(id);
-        return "redirect:/categories/viewCategories";
-    }
-
-
     @GetMapping("/{parent_category_Name}")
     public String showCategory(@PathVariable String parent_category_Name,
                                Model model,
@@ -84,7 +40,6 @@ public class CategoriesController {
         navBarService.setupNavbar(model, authentication);
         return "search"; // Make sure this matches the actual template name
     }
-
 
 
     @GetMapping("/{parent_category_Name}/{subCategory_name}")

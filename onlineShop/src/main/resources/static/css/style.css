@@ -331,3 +331,60 @@ nav {
     color: #333;
 }
 
+/* Container for login */
+.login {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+/* Hide the logout form by default */
+.logout-form {
+    display: none; /* Hide the logout button by default */
+    position: absolute;
+    top: 100%; /* Position the logout button just below the "Welcome" text */
+    left: 0;
+    background-color: #f1f1f1; /* Optional: add a background color */
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 10; /* Ensure it appears above other content */
+}
+
+/* Show logout button when hovering over the login container */
+.login:hover .logout-form {
+    display: block;
+}
+
+/* Styling for the logout button */
+.logout-form button {
+    background-color: #ff4d4d; /* Optional: style the button */
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Admin panel link */
+.admin-panel {
+    margin-top: 10px; /* Add space between the logout button and the admin panel link */
+}
+
+/* Admin panel link styling */
+.admin-panel a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    margin-left: 10px;
+    padding: 5px;
+    background-color: darkblue;
+    border-radius: 5px;
+}
+
+/* Admin panel link hover effect */
+.admin-panel a:hover {
+    background-color: #555;
+}
+
+
+

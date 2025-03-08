@@ -20,10 +20,8 @@ public class RegisterController {
                            @RequestParam String email,
                            @RequestParam String username,
                            @RequestParam String password) {
-
         usersService.registerUser(username, password, email, Role.USER, name, surname);
         return "redirect:/login";  // Redirect after successful registration
-
     }
 
 

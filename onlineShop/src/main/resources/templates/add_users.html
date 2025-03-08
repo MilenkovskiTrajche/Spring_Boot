@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${user.id != null ? 'Edit User' : 'Add User'}"></title>
+    <link rel="stylesheet" href="/css/add_forms.css">
+</head>
+<body>
+
+<h2 th:text="${user.id != null ? 'Edit User' : 'Add User'}"></h2>
+
+<!-- Edit User Form -->
+<form th:action="@{'/admin/users/edit/' + ${user.id}}" th:if="${user.id != null}" method="post">
+    <input type="hidden" name="id" th:value="${user.id}">
+
+    <label for="register-name">Name:</label>
+    <input type="text" id="register-name" name="name" th:value="${user.name}" required />
+
+    <label for="register-surname">Surname:</label>
+    <input type="text" id="register-surname" name="surname" th:value="${user.surname}" required />
+
+    <label for="register-email">Email:</label>
+    <input type="email" id="register-email" name="email" th:value="${user.email}" required />
+
+    <label for="register-username">Username:</label>
+    <input type="text" id="register-username" name="username" th:value="${user.username}" required />
+
+    <!-- Password Input (Optional) -->
+    <label for="password">Password (leave blank if not changing):</label>
+    <input type="password" id="password" name="password">
+
+    <label for="role">Role:</label>
+    <select id="role" name="role" required>
+        <option th:each="role : ${roles}"
+                th:value="${role}"
+                th:text="${role}"
+                th:selected="${user.role == role}"></option>
+    </select>
+
+    <button type="submit">Update User</button>
+</form>
+
+<!-- Add User Form -->
+<form th:action="@{/admin/users/add}" th:unless="${user.id != null}" method="post">
+    <label for="register-name">Name:</label>
+    <input type="text" id="register-name" name="name" required />
+
+    <label for="register-surname">Surname:</label>
+    <input type="text" id="register-surname" name="surname" required />
+
+    <label for="register-email">Email:</label>
+    <input type="email" id="register-email" name="email" required />
+
+    <label for="register-username">Username:</label>
+    <input type="text" id="register-username" name="username" required />
+
+    <label for="register-password">Password:</label>
+    <input type="password" id="register-password" name="password" required />
+
+    <label for="role">Role:</label>
+    <select id="role" name="role" required>
+        <option th:each="role : ${roles}"
+                th:value="${role}"
+                th:text="${role}"></option>
+    </select>
+
+    <button type="submit">Create User</button>
+</form>
+
+<!-- Back link -->
+<a th:href="@{/admin/users/viewUsers}">Back</a>
+
+</body>
+</html>

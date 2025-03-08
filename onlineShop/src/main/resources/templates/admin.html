@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Admin Panel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        .admin-container {
+            max-width: 400px;
+            margin: auto;
+        }
+        .admin-button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            font-size: 18px;
+            text-align: center;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        .admin-button:hover {
+            background-color: #0056b3;
+        }
+
+        header {
+            background-color: #0056b3;
+            padding: 15px;
+            text-align: center;
+        }
+        .menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .menu li {
+            margin: 0 15px;
+        }
+
+        .menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <nav>
+        <ul class="menu">
+            <li><a href="/">Home</a></li>
+        </ul>
+    </nav>
+</header>
+<h1>Admin Panel</h1>
+
+<div class="admin-container">
+    <a th:href="@{/admin/categories/viewCategories}" class="admin-button">Categories</a>
+    <a th:href="@{/admin/products/viewProducts}" class="admin-button">Products</a>
+    <a th:href="@{/admin/brands/viewBrands}" class="admin-button">Brands</a>
+    <a th:href="@{/admin/users/viewUsers}" class="admin-button">Users</a>
+</div>
+
+</body>
+</html>

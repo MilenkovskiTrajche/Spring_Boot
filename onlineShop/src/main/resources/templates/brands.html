@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Categories</title>
+    <link rel="stylesheet" href="/css/categories.css">
+</head>
+<body>
+
+<h2>Brands</h2>
+<a style="display: block;text-align: justify;" th:href="@{/admin/brands/add}">Add New Brand</a>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Brand Name</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="brand : ${brands}">
+        <td th:text="${brand.id}"></td>
+        <td th:text="${brand.name}"></td>
+        <td>
+            <a th:href="@{/admin/brands/edit/{id}(id=${brand.id})}">Edit</a> |
+            <a th:href="@{/admin/brands/delete/{id}(id=${brand.id})}" onclick="return confirm('Are you sure?')">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<a style="display: block;text-align: center;"  href="/admin">Back to panel</a>
+
+</body>
+</html>

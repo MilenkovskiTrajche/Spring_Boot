@@ -1,6 +1,7 @@
 package com.example.onlineshop.service;
 
 import com.example.onlineshop.entity.Brands;
+import com.example.onlineshop.entity.Categories;
 import com.example.onlineshop.repository.BrandsRepository;
 import org.springframework.stereotype.Service;
 
@@ -21,5 +22,20 @@ public class BrandsService {
 
     public void save(Brands brands) {
         brandsRepository.save(brands);
+    }
+
+    public Brands findById(Long id) {
+        return brandsRepository.findById(id).orElse(null);
+    }
+
+    public void updateBrand(Long id, Brands newbrand) {
+        Brands existingbrand = findById(id);
+        existingbrand.setName(newbrand.getName());
+
+        brandsRepository.save(existingbrand);
+    }
+
+    public void deleteById(Long id) {
+        brandsRepository.deleteById(id);
     }
 }

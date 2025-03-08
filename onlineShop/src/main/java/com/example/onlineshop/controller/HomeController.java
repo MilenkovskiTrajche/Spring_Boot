@@ -18,11 +18,12 @@ public class HomeController {
         this.navBarService = navBarService;
     }
 
-    @GetMapping("/")
+    @GetMapping({"/","/home"})
     public String home(Model model,
                        Authentication authentication) {
         model.addAttribute("products", productsService.findAll());
         navBarService.setupNavbar(model, authentication);
         return "index";
     }
+
 }
