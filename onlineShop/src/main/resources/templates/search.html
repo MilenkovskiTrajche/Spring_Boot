@@ -9,6 +9,18 @@
 <body>
     <div th:replace="~{fragments/header :: body}"></div>
 
+    <!-- Sort By Dropdown -->
+    <div class="sort-container" style="padding: 10px; margin: 10px;">
+        <form method="GET" th:action="@{'/categories/' + ${name}}" id="sortForm">
+            <label for="sort" style="font-weight: bold;">Sort by:</label>
+            <select id="sort" name="sort" onchange="document.getElementById('sortForm').submit();">
+                <option th:value="priceLowToHigh" th:selected="${sort == 'priceLowToHigh'}">Price (Low to High)</option>
+                <option th:value="priceHighToLow" th:selected="${sort == 'priceHighToLow'}">Price (High to Low)</option>
+                <option th:value="name" th:selected="${sort == 'name'}">By Name</option>
+            </select>
+        </form>
+    </div>
+
     <section class="products">
         <h2>Products in Category: <span th:text="${name}"></span></h2>
         <div class="product-list">
