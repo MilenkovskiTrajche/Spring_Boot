@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Setter
 @Getter
 @Entity
@@ -35,9 +37,14 @@ public class Products {
 
     private String image;
 
+    @ElementCollection
+    @CollectionTable(name = "product_sizes", joinColumns = @JoinColumn(name = "product_id"))
+    @Column(name = "size")
+    private List<String> availableSizes;
+
     public Products() {}
 
-    public Products(String name, String description, Float price, Integer quantity, Categories category, String image, Brands brand) {
+    public Products(String name, String description, Float price, Integer quantity, Categories category, String image, Brands brand,List<String> availableSizes) {
         this.name = name;
         this.description = description;
         this.price = price;
@@ -45,6 +52,7 @@ public class Products {
         this.category = category;
         this.image = image;
         this.brand = brand;
+        this.availableSizes = availableSizes;
     }
 
 }

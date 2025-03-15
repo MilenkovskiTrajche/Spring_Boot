@@ -62,6 +62,16 @@
     <label for="image">Product Image:</label>
     <input type="file" id="image" name="imageFile" accept="image/*">
 
+    <label>Available Sizes:</label><br>
+    <div>
+        <label><input style="width: auto" type="checkbox" name="availableSizes" th:checked="${product.availableSizes.contains('S')}" th:value="S"> S</label><br>
+        <label><input style="width: auto" type="checkbox" name="availableSizes" th:checked="${product.availableSizes.contains('M')}" th:value="M"> M</label><br>
+        <label><input style="width: auto" type="checkbox" name="availableSizes" th:checked="${product.availableSizes.contains('L')}" th:value="L"> L</label><br>
+        <label><input style="width: auto" type="checkbox" name="availableSizes" th:checked="${product.availableSizes.contains('XL')}" th:value="XL"> XL</label><br>
+        <label><input style="width: auto" type="checkbox" name="availableSizes" th:checked="${product.availableSizes.contains('XXL')}" th:value="XXL"> XXL</label><br>
+    </div>
+
+
     <button type="submit">Update Product</button>
 </form>
 
@@ -101,8 +111,19 @@
     <label for="image">Product Image:</label>
     <input type="file" id="image" name="imageFile" accept="image/*">
 
+    <!-- Sizes Checkbox List -->
+    <label>Available Sizes:</label><br>
+    <div>
+        <label><input style="width: auto" type="checkbox" name="availableSizes" value="S"> S</label><br>
+        <label><input style="width: auto" type="checkbox" name="availableSizes" value="M"> M</label><br>
+        <label><input style="width: auto" type="checkbox" name="availableSizes" value="L"> L</label><br>
+        <label><input style="width: auto" type="checkbox" name="availableSizes" value="XL"> XL</label><br>
+        <label><input style="width: auto" type="checkbox" name="availableSizes" value="XXL"> XXL</label><br>
+    </div>
+
     <button type="submit">Add Product</button>
 </form>
+
 
 <a th:href="@{/admin/products/viewProducts}">Back</a>
 </body>

@@ -31,7 +31,7 @@ public class ProductsService {
         this.brandsRepository = brandsRepository;
     }
 
-    public void saveProduct(Products product, Long categoryId, Long brandId, MultipartFile imageFile) throws IOException {
+    public void saveProduct(Products product, Long categoryId, Long brandId, MultipartFile imageFile,List<String> availablesize) throws IOException {
         Optional<Categories> category = categoriesRepository.findById(categoryId);
         category.ifPresent(product::setCategory);
 
@@ -41,7 +41,7 @@ public class ProductsService {
         String imagePath = IMAGE_UPLOAD_DIR + imageFile.getOriginalFilename();
         Files.write(Paths.get(imagePath), imageFile.getBytes());
         product.setImage("/uploads/" + imageFile.getOriginalFilename());
-
+        product.setAvailableSizes(availablesize);
 
         productsRepository.save(product);
     }
@@ -61,7 +61,7 @@ public class ProductsService {
     }
 
     public void updateProduct(Products product, Long categoryId, Long brandId,
-                              MultipartFile imageFile, boolean keepImage) throws Exception {
+                              MultipartFile imageFile, boolean keepImage,List<String> availableSizes) throws Exception {
         Products existingProduct = productsRepository.findById(product.getId())
                 .orElseThrow(Exception::new);
 
@@ -77,7 +77,7 @@ public class ProductsService {
             Files.write(Paths.get(imagePath), imageFile.getBytes());
             existingProduct.setImage("/uploads/" + imageFile.getOriginalFilename());
         }
-
+        existingProduct.setAvailableSizes(availableSizes);
         productsRepository.save(existingProduct);
     }
 

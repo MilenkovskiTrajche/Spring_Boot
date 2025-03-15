@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
 
 @Controller
 @RequestMapping("/admin")
@@ -146,8 +147,9 @@ public class AdminController {
     public String addProduct(@ModelAttribute Products product,
                              @RequestParam("categoryId") Long categoryId,
                              @RequestParam("brandId") Long brandId,
-                             @RequestParam("imageFile") MultipartFile imageFile) throws IOException {
-        productsService.saveProduct(product, categoryId,brandId, imageFile);
+                             @RequestParam("imageFile") MultipartFile imageFile,
+                             @RequestParam(value = "availableSizes", required = false) List<String> availableSizes) throws IOException {
+        productsService.saveProduct(product, categoryId,brandId, imageFile,availableSizes);
         return "redirect:/admin/products/viewProducts";
     }
 
@@ -166,8 +168,9 @@ public class AdminController {
                                @RequestParam("categoryId") Long categoryId,
                                @RequestParam("brandId") Long brandId,
                                @RequestParam("imageFile") MultipartFile imageFile,
-                               @RequestParam(value = "keepImage", defaultValue = "false") boolean keepImage) throws Exception {
-        productsService.updateProduct(products, categoryId, brandId, imageFile, keepImage);
+                               @RequestParam(value = "keepImage", defaultValue = "false") boolean keepImage,
+                               @RequestParam(value = "availableSizes", required = false) List<String> availableSizes) throws Exception {
+        productsService.updateProduct(products, categoryId, brandId, imageFile, keepImage,availableSizes);
         return "redirect:/admin/products/viewProducts";
     }
 
