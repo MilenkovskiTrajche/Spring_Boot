@@ -8,9 +8,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UsersService implements UserDetailsService {
@@ -44,6 +44,9 @@ public class UsersService implements UserDetailsService {
         usersRepository.deleteById(id);
     }
 
+    public Optional<Users> findByUsername(String username) {
+        return usersRepository.findByUsername(username);
+    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

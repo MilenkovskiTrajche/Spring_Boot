@@ -97,5 +97,9 @@ public class ProductsService {
         productsRepository.deleteById(id);
     }
 
+    public Products getProductById(Long productId) {
+        return productsRepository.findById(productId).orElse(null);
+    }
+
 
 }

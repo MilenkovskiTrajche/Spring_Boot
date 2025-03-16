@@ -53,10 +53,15 @@
                                     <a th:href="@{/admin}">Admin</a>
                                 </div>
                             </th:block>
+
+                            <!-- Cart Button -->
+                            <div class="cart">
+                                <a th:href="@{/cart}" class="cart-button">
+                                    Cart <span th:text="${cartItemCount}">0</span> items
+                                </a>
+                            </div>
                         </div>
                     </th:block>
-
-
 
                     <!-- Show this block only if no user is logged in -->
                     <th:block th:if="${userStatus == 'none'}">
@@ -69,6 +74,7 @@
         </div>
     </nav>
 </header>
+
 
 </body>
 </html>
