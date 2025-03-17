@@ -18,6 +18,7 @@
       border-radius: 8px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       background: #fff;
+      flex-wrap: wrap;
     }
     .image-container {
       flex: 1;
@@ -78,8 +79,25 @@
     .cart-actions button:hover {
       background-color: #c0392b;
     }
+    /* Media Queries for Responsiveness */
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        margin: 20px;
+      }
+      .image-container {
+        padding-right: 0;
+      }
+      .details {
+        margin-top: 20px;
+      }
+      .cart-actions {
+        flex-direction: column;
+        margin-top: 10px;
+      }
+    }
   </style>
-  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 

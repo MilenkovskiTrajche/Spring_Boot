@@ -84,7 +84,6 @@ nav {
 
 .products {
     text-align: center;
-    padding: 20px;
 }
 
 .product-list {
@@ -184,7 +183,9 @@ nav {
     cursor: pointer;
     padding: 3px;
 }
-
+.sort-container{
+    margin-top:10%;
+}
 .search-button img {
     width: 20px; /* Made the icon smaller */
     height: 20px;
@@ -379,4 +380,128 @@ nav {
 /* Admin panel link hover effect */
 .admin-panel a:hover {
     background-color: #555;
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .navbar .menu {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        background-color: #333;
+        width: 100%;
+        padding: 10px 0;
+    }
+
+    .navbar .menu a {
+        font-size: 14px;
+        padding: 8px 12px;
+    }
+
+    .navbar .menu.active {
+        display: flex;
+    }
+
+    .product-list {
+        grid-template-columns: repeat(2, 1fr);
+        margin: 0 5%;
+        width: 90%;
+    }
+
+    .hamburger-menu {
+        display: block;
+        font-size: 30px;
+        padding: 10px;
+    }
+
+    .product {
+        padding: 15px;
+    }
+
+    .search-form input {
+        width: 250px;
+    }
+
+    .cart-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .cart-actions button {
+        padding: 8px 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .product-list {
+        grid-template-columns: 1fr; /* Single column for very small screens */
+    }
+
+    .product img {
+        height: 250px; /* Adjust image height for mobile */
+    }
+
+    .search-form input {
+        width: 200px; /* Smaller search bar */
+    }
+
+    .cart-actions button {
+        padding: 8px 12px;
+    }
+}
+
+/* Mobile/Tablet styles */
+@media (max-width: 768px) {
+    /* Hide menu links by default on mobile */
+    .menu {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: #333;
+        padding: 10px 0;
+    }
+
+    .menu.active {
+        display: flex;
+    }
+
+    /* Show hamburger icon */
+    .hamburger-menu {
+        display: block;
+    }
+
+
+
+    /* Adjust search form on small screens */
+    .search-form {
+        width: 200px;
+    }
+
+    /* Modify menu item padding on smaller screens */
+    .menu a {
+        padding: 12px 15px;
+    }
+
+    .login-register a {
+        font-size: 12px;
+    }
+}
+
+/* Mobile Menu for very small screens */
+@media (max-width: 480px) {
+    .menu a {
+        padding: 10px 15px;
+    }
+
+    .hamburger-menu {
+        font-size: 28px;
+    }
+
+    .search-form {
+        width: 180px;
+    }
 }

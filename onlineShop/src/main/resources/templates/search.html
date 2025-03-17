@@ -5,12 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Online Shop</title>
     <link rel="stylesheet" href="/css/style.css">
+    <style>
+        /* Responsive Styles */
+        @media screen and (max-width: 768px) {
+            .product-list {
+                display: grid;
+                grid-template-columns: 1fr 1fr; /* 2 items per row */
+                gap: 10px;
+                width: 100%;
+            }
+
+            .product img {
+                width: 100%; /* Make images fit within the grid item */
+                height: auto;
+            }
+
+            .product-list {
+                margin: 0 5%;
+                width: 90%;
+            }
+
+            .banner img {
+                width: 100%; /* Make the banner image full width on small screens */
+                height: auto;
+                object-fit: cover;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .product-list {
+                grid-template-columns: 1fr; /* 1 item per row on extra small screens */
+            }
+
+            .product img {
+                width: 100%; /* Ensure images fit */
+            }
+        }
+    </style>
 </head>
 <body>
     <div th:replace="~{fragments/header :: body}"></div>
 
     <!-- Sort By Dropdown -->
-    <div class="sort-container" style="padding: 10px; margin: 10px;">
+    <div class="sort-container" style="margin-top: 150px">
         <form method="GET" th:action="@{'/categories/' + ${name}}" id="sortForm">
             <label for="sort" style="font-weight: bold;">Sort by:</label>
             <select id="sort" name="sort" onchange="document.getElementById('sortForm').submit();">
@@ -47,6 +84,8 @@
             </div>
         </div>
     </section>
+
+    <div th:replace="~{fragments/footer.html}"></div>
 
 
 </body>

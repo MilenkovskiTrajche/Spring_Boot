@@ -5,12 +5,11 @@
     <title>Shopping Cart</title>
     <style>
         body {
-            margin: 0;
+            margin: 10% 0;
             padding: 0;
             box-sizing: border-box;
             font-family: Arial, sans-serif;
             background-color: #f5f5f5;
-            margin-top: 60px; /* Adds margin due to the header */
         }
 
         table {
@@ -64,6 +63,21 @@
             font-size: 1.5rem;
         }
 
+        /* Media Queries for Responsiveness */
+        @media (max-width: 768px) {
+            table {
+                width: 95%;
+            }
+            th, td {
+                padding: 8px;
+            }
+            img {
+                max-width: 80px;
+            }
+            button {
+                padding: 8px 12px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -106,7 +120,7 @@
 
     <!-- Display Total Price -->
     <div>
-        <h3>Total Price: <span th:text="${totalPrice}"></span> MKD</h3>
+        <h3>Total Price: <span th:text="${totalPrice}"></span> $</h3>
     </div>
 </div>
 </body>
