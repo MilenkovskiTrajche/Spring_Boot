@@ -41,6 +41,14 @@ public class CategoriesController {
         // Fetch products by category ID
         assert category != null;
         List<Products> products = productsService.findByCategoryId(category.getId());
+        sortProducts(sort, model, products);
+        model.addAttribute("name", category.getName());
+        model.addAttribute("sort", sort);
+        navBarService.setupNavbar(model, authentication);
+        return "search";
+    }
+
+    public void sortProducts(@RequestParam(required = false) String sort, Model model, List<Products> products) {
         if (sort != null) {
             switch (sort) {
                 case "priceLowToHigh":
@@ -55,10 +63,6 @@ public class CategoriesController {
             }
         }
         model.addAttribute("products",products );
-        model.addAttribute("name", category.getName());
-        model.addAttribute("sort", sort);
-        navBarService.setupNavbar(model, authentication);
-        return "search";
     }
 
 
@@ -71,20 +75,7 @@ public class CategoriesController {
         Categories parentCategory = categoriesService.findByName(parent_category_Name);
         Categories category = categoriesService.findByNameAndParentCategoryId(subCategory_name, parentCategory.getId());
         List<Products> products = productsService.findAllByCategory_Id(category.getId());
-        if (sort != null) {
-            switch (sort) {
-                case "priceLowToHigh":
-                    products.sort(Comparator.comparing(Products::getPrice));
-                    break;
-                case "priceHighToLow":
-                    products.sort(Comparator.comparing(Products::getPrice).reversed());
-                    break;
-                case "name":
-                    products.sort(Comparator.comparing(Products::getName));
-                    break;
-            }
-        }
-        model.addAttribute("products",products);
+        sortProducts(sort, model, products);
         model.addAttribute("name", parent_category_Name+"/"+subCategory_name);
         model.addAttribute("sort", sort);
         navBarService.setupNavbar(model, authentication);

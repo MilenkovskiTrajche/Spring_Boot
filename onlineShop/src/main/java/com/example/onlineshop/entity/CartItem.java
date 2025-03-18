@@ -26,12 +26,6 @@ public class CartItem {
 
     public CartItem(){}
 
-    public CartItem(Products product, String size, Integer quantity) {
-        this.product = product;
-        this.size = size;
-        this.quantity = quantity;
-    }
-
     public CartItem(Cart cart, Products product, Integer quantity, String size) {
         this.cart = cart;
         this.product = product;

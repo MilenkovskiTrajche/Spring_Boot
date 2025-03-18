@@ -1,7 +1,6 @@
 package com.example.onlineshop.service;
 
 import com.example.onlineshop.entity.Brands;
-import com.example.onlineshop.entity.Categories;
 import com.example.onlineshop.repository.BrandsRepository;
 import org.springframework.stereotype.Service;
 

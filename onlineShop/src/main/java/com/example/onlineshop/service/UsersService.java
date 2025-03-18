@@ -35,8 +35,8 @@ public class UsersService implements UserDetailsService {
     public Users findById(Long id) {
         return usersRepository.findById(id).orElse(null);
     }
-    public void updateUser(Long id, Users user) {
-        usersRepository.findById(id).orElse(null);
+    public void updateUser(Long id, Users user) throws Exception {
+        usersRepository.findById(id).orElseThrow(Exception::new);
         usersRepository.save(user);
     }
 

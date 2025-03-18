@@ -214,7 +214,7 @@ public class AdminController {
 
     @PostMapping("/users/edit/{id}")
     public String editUser(@PathVariable Long id,
-                           @ModelAttribute Users user){
+                           @ModelAttribute Users user) throws Exception {
         // Encrypt the password only if it's provided
         if (user.getPassword() != null && !user.getPassword().isEmpty()) {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
